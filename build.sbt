@@ -54,13 +54,13 @@ lazy val compilerOptions =
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
 
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (version.value.trim.endsWith("SNAPSHOT"))
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
+//publishTo := {
+//  val nexus = "https://oss.sonatype.org/"
+//  if (version.value.trim.endsWith("SNAPSHOT"))
+//    Some("snapshots" at nexus + "content/repositories/snapshots")
+//  else
+//    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+//}
 publishMavenStyle := true
 
 publishArtifact in Test := false
