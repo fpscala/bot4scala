@@ -65,6 +65,7 @@ publishMavenStyle := true
 
 publishArtifact in Test := false
 pomIncludeRepository := { x => false }
+releaseIgnoreUntrackedFiles := true
 scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
