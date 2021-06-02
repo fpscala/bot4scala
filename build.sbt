@@ -54,35 +54,9 @@ lazy val compilerOptions =
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
 
-//publishTo := {
-//  val nexus = "https://oss.sonatype.org/"
-//  if (version.value.trim.endsWith("SNAPSHOT"))
-//    Some("snapshots" at nexus + "content/repositories/snapshots")
-//  else
-//    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-//}
-publishMavenStyle := true
-
-publishArtifact in Test := false
-pomIncludeRepository := { x => false }
-releaseIgnoreUntrackedFiles := true
 scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
     "scm:git:git@github.com:Prince951-17/bot4scala.git"
     )
-  )
-pomExtra := (
-  <url>https://github.com/Prince951-17/bot4scala</url>
-    <licenses>
-      <license>
-        <name>Apache 2.0</name>
-        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-        <distribution>repo</distribution>
-      </license>
-    </licenses>
-    <scm>
-      <url>git@github.com:Prince951-17/bot4scala.git</url>
-      <connection>scm:git:git@github.com:Prince951-17/bot4scala.git</connection>
-    </scm>
   )
