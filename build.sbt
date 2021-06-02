@@ -6,7 +6,7 @@ lazy val bot4scala = (project in file(".")).aggregate(core, examples)
 
 lazy val projectSettings = Seq(
   organization := "org.prince",
-  licenses ++= Seq(("MIT", url("http://opensource.org/licenses/MIT"))),
+  licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
   developers := List(Developer("Prince", "Maftun Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))),
   scalaVersion := scala2_12,
@@ -64,3 +64,24 @@ publishTo := {
 publishMavenStyle := true
 
 publishArtifact in Test := false
+pomIncludeRepository := { x => false }
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/Prince951-17/bot4scala"),
+    "scm:git:git@github.com:Prince951-17/bot4scala.git"
+    )
+  )
+pomExtra := (
+  <url>https://github.com/Prince951-17/bot4scala</url>
+    <licenses>
+      <license>
+        <name>Apache 2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+    <scm>
+      <url>git@github.com:Prince951-17/bot4scala.git</url>
+      <connection>scm:git:git@github.com:Prince951-17/bot4scala.git</connection>
+    </scm>
+  )
