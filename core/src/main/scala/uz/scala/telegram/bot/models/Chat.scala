@@ -25,7 +25,7 @@ import uz.scala.telegram.bot.models.ChatType.ChatType
  * @param location                 ChatLocation	Optional. For supergroups, the location to which the supergroup is connected. Returned only in getChat.
  */
 case class Chat(
-  id: Long,
+  id                      : Long,
   `type`                  : ChatType,
   title                   : Option[String] = None,
   username                : Option[String] = None,
