@@ -1,8 +1,8 @@
 package samples
 
-import org.prince.telegram.bot.OptionPimps._
-import org.prince.telegram.bot.{Commands, Polling, TelegramBot, Utils}
-import org.prince.telegram.bot.api.{ForceReply, InputFile, ReplyKeyboardHide, ReplyKeyboardMarkup}
+import uz.scala.telegram.bot.OptionPimps._
+import uz.scala.telegram.bot.{Commands, Polling, TelegramBot, Utils}
+import uz.scala.telegram.bot.api.{ForceReply, InputFile, ReplyKeyboardHide, ReplyKeyboardMarkup}
 
 import java.net.URLEncoder
 

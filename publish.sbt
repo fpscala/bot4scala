@@ -12,6 +12,13 @@ publishTo := Some(
     Opts.resolver.sonatypeStaging
 )
 
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/Prince951-17/bot4scala"),
+    "scm:git:git@github.com:Prince951-17/bot4scala.git"
+  )
+)
+
 pomExtra in Global := (
   <url>https://github.com/Prince951-17/bot4scala</url>
     <licenses>

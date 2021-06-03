@@ -5,12 +5,12 @@ val scala2_12 = "2.12.12"
 lazy val bot4scala = (project in file(".")).aggregate(core, examples)
 
 lazy val projectSettings = Seq(
-  organization := "org.prince",
+  organization := "uz.scala",
   licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
-  developers := List(Developer("Prince", "Maftun Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))),
+  developers := List(Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))),
   scalaVersion := scala2_12,
-  crossScalaVersions := Seq(scala2_12, scalaVersion.value)
+  crossScalaVersions := Seq(scala2_13, scalaVersion.value)
   )
 
 lazy val core = project
@@ -53,10 +53,3 @@ lazy val compilerOptions =
     "-Ywarn-unused:privates", // Warn if a private member is unused.
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
-
-scmInfo := Some(
-  ScmInfo(
-    url("https://github.com/Prince951-17/bot4scala"),
-    "scm:git:git@github.com:Prince951-17/bot4scala.git"
-    )
-  )
