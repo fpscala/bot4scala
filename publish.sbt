@@ -32,11 +32,4 @@ pomExtra in Global := (
       <url>git@github.com:Prince951-17/bot4scala.git</url>
       <connection>scm:git:git@github.com:Prince951-17/bot4scala.git</connection>
     </scm>
-    <developers>
-      <developer>
-        <id>Prince</id>
-        <name>Maftunbek Raxmatov</name>
-        <url>https://github.com/Prince951-17</url>
-      </developer>
-    </developers>
   )
