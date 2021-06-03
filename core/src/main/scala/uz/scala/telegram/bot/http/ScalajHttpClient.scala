@@ -1,7 +1,7 @@
 package uz.scala.telegram.bot.http
 
 import scalaj.http.{Http, MultiPart}
-import uz.scala.telegram.bot.api.InputFile
+import uz.scala.telegram.bot.models.InputFile
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent._

@@ -1,4 +1,4 @@
-package uz.scala.telegram.bot.api
+package uz.scala.telegram.bot.models
 
 /**
  * UserProfilePhotos
@@ -9,6 +9,6 @@ package uz.scala.telegram.bot.api
  * @param photos     Requested profile pictures (in up to 4 sizes each)
  */
 case class UserProfilePhotos(
-                              totalCount: Int,
-                              photos    : Array[Array[PhotoSize]]
-                            )
+  totalCount: Int,
+  photos    : Array[Array[PhotoSize]]
+)

@@ -1,4 +1,4 @@
-package uz.scala.telegram.bot.api
+package uz.scala.telegram.bot.models
 
 /**
  * Document

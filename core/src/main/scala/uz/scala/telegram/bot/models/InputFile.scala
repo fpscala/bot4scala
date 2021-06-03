@@ -1,4 +1,4 @@
-package uz.scala.telegram.bot.api
+package uz.scala.telegram.bot.models
 
 import java.io.{FileInputStream, InputStream, File}
 
@@ -20,7 +20,7 @@ object InputFile {
   }
 
   def apply(fileName: String, inputStream: InputStream): InputFile = new InputFile {
-    val name = fileName
-    val bytes = Iterator.continually(inputStream.read()) takeWhile (-1 !=) map (_.toByte) toArray
+    val name: String = fileName
+    val bytes: Array[Byte] = Iterator.continually(inputStream.read()) takeWhile (-1 !=) map (_.toByte) toArray
   }
 }

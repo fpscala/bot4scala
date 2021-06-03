@@ -1,7 +1,7 @@
 package uz.scala.telegram.bot
 
 import com.sun.net.httpserver._
-import uz.scala.telegram.bot.api.Update
+import uz.scala.telegram.bot.models.Update
 import uz.scala.telegram.bot.json.JsonUtils
 
 import java.net.InetSocketAddress

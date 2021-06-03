@@ -1,6 +1,6 @@
 package uz.scala.telegram.bot
 
-import uz.scala.telegram.bot.api.{Message, Update}
+import uz.scala.telegram.bot.models.{Message, Update}
 
 import scala.collection.mutable
 import scala.concurrent.Future

@@ -1,6 +1,6 @@
 package uz.scala.telegram.bot
 
-import uz.scala.telegram.bot.api.{TelegramBotApi, Update}
+import uz.scala.telegram.bot.models.{TelegramBotApi, Update}
 import uz.scala.telegram.bot.http.ScalajHttpClient
 
 import scala.concurrent.ExecutionContext.Implicits.global

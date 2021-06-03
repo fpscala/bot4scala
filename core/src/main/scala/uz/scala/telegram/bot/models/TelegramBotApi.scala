@@ -1,4 +1,4 @@
-package uz.scala.telegram.bot.api
+package uz.scala.telegram.bot.models
 
 import ChatAction.ChatAction
 import TelegramBotApi.InvalidResponse
