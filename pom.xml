@@ -6,12 +6,14 @@
     <artifactId>bot4scala</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <dependencies>
-        <dependency>
-            <groupId>uz.scala</groupId>
-            <artifactId>bot4scala</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>bot4scala</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <snapshotRepository>
+            <id>bot4scala</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
