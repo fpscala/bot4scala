@@ -3,12 +3,13 @@ publishMavenStyle := true
 pomIncludeRepository := { _ => false }
 
 sonatypeProfileName := "com.prince"
+sonatypeCredentialHost := "s01.oss.sonatype.org"
+sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 releaseIgnoreUntrackedFiles := true
 publishTo := sonatypePublishTo.value
 
 // [If necessary] Settings for using custom Nexus repositories:
-sonatypeCredentialHost := "s01.oss.sonatype.org"
-sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
+
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 scmInfo := Some(
   ScmInfo(
