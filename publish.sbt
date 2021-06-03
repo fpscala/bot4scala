@@ -5,13 +5,13 @@ pomIncludeRepository := { _ => false }
 sonatypeProfileName := "com.prince"
 releaseIgnoreUntrackedFiles := true
 
-publishTo := Some(
+publishTo := {
+  val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
-    Opts.resolver.sonatypeSnapshots
+    Some("snapshots" at nexus + "content/repositories/snapshots")
   else
-    Opts.resolver.sonatypeStaging
-)
-
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
 scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
