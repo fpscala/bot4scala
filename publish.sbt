@@ -1,6 +1,6 @@
 publishMavenStyle := true
 
-pomIncludeRepository := { _ => false }
+pomIncludeRepository := { _ => true }
 
 sonatypeProfileName := "com.prince"
 releaseIgnoreUntrackedFiles := true
