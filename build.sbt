@@ -15,6 +15,7 @@ lazy val projectSettings = Seq(
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
+  releaseIgnoreUntrackedFiles := true,
   publishTo in ThisBuild := {
     val nexus = "https://s01.oss.sonatype.org/"
     if (isSnapshot.value)
