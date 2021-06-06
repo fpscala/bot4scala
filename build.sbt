@@ -1,3 +1,5 @@
+import sbtrelease.ReleaseStateTransformations._
+
 version := "1.0"
 
 val scala2_13 = "2.13.5"
@@ -5,11 +7,44 @@ val scala2_12 = "2.12.12"
 lazy val bot4scala = (project in file(".")).aggregate(core, examples)
 
 lazy val projectSettings = Seq(
+  ThisBuild / version := "1.0",
   organization := "uz.scala",
+  publishArtifact in Test := false,
+  pomIncludeRepository := { _ => false },
+    publishTo in ThisBuild := {
+    val nexus = "https://s01.oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  },
+  scmInfo := Some(
+    ScmInfo(
+      url("https://github.com/Prince951-17/bot4scala"),
+      "scm:git:https://github.com/Prince951-17/bot4scala.git"
+    )
+  ),
+  releaseProcess := Seq[ReleaseStep](
+    checkSnapshotDependencies,
+    inquireVersions,
+    runClean,
+    runTest,
+    setReleaseVersion,
+    commitReleaseVersion,
+    tagRelease,
+    publishArtifacts,
+    setNextVersion,
+    commitNextVersion,
+    ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+    pushChanges
+  ),
   licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
   developers := List(Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))),
   scalaVersion := scala2_12,
+
+  credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
+  resolvers += Resolver.mavenLocal,
   crossScalaVersions := Seq(scala2_13, scalaVersion.value)
   )
 
