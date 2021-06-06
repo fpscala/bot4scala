@@ -1,6 +1,5 @@
 import sbtrelease.ReleaseStateTransformations._
-
-version := "1.0"
+import xerial.sbt.Sonatype.GitHubHosting
 
 val scala2_13 = "2.13.5"
 val scala2_12 = "2.12.12"
@@ -8,10 +7,13 @@ lazy val bot4scala = (project in file(".")).aggregate(core, examples)
 
 lazy val projectSettings = Seq(
   ThisBuild / version := "1.0",
+  sonatypeProfileName := "com.prince",
   organization := "uz.scala",
+  publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
-    publishTo in ThisBuild := {
+  sonatypeProjectHosting := Some(GitHubHosting("Prince951-17", "bot4scala", "prince777_98@mail.ru")),
+  publishTo in ThisBuild := {
     val nexus = "https://s01.oss.sonatype.org/"
     if (isSnapshot.value)
       Some("snapshots" at nexus + "content/repositories/snapshots")
