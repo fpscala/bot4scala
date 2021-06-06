@@ -38,9 +38,7 @@ lazy val projectSettings = Seq(
     ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
     pushChanges
   ),
-  publishConfiguration := publishConfiguration.value.withOverwrite(true) ,
-  publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true),
-  pushRemoteCacheConfiguration := pushRemoteCacheConfiguration.value.withOverwrite(true),
+  publishConfiguration ~= (_.withOverwrite(true)),
   licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
   homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
   developers := List(Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))),
