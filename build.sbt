@@ -1,13 +1,17 @@
+import sbt.Def.settings
 import sbt.Keys.publishArtifact
 
 val scala2_13 = "2.13.5"
 val scala2_12 = "2.12.12"
 lazy val bot4scala = (project in file(".")).aggregate(core, examples)
-
+name := "bot4scala"
+settings(
+  publish := {},
+  publishLocal := {},
+)
 lazy val projectSettings = Seq(
   version := "1.0",
   organization := "uz.scala",
-  sonatypeProfileName := "com.prince",
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := { _ => false },
