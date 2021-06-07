@@ -20,7 +20,7 @@ publishTo in ThisBuild := {
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots/")
   else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+    Some("releases" at nexus + "content/repositories/releases/")
 }
 scmInfo := Some(
   ScmInfo(
