@@ -14,7 +14,7 @@ lazy val bot4scala = (project in file("."))
 version := "1.0"
 organization := "uz.scala"
 publishArtifact in Test := false
-publishArtifact := false
+publishArtifact := true
 publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
