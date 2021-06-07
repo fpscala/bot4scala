@@ -10,35 +10,35 @@ settings(
   publishLocal := {},
 )
 lazy val projectSettings = Seq(
-  version := "1.0",
-  organization := "uz.scala",
-  publishMavenStyle := true,
-  publishArtifact in Test := false,
-  pomIncludeRepository := { _ => false },
-  releaseIgnoreUntrackedFiles := true,
-  publishTo in ThisBuild := {
+  ThisBuild / version := "1.0",
+  ThisBuild / organization := "uz.scala",
+  ThisBuild / publishMavenStyle := true,
+  ThisBuild / publishArtifact in Test := false,
+  ThisBuild /  pomIncludeRepository := { _ => false },
+  ThisBuild / releaseIgnoreUntrackedFiles := true,
+  ThisBuild /  publishTo in ThisBuild := {
     val nexus = "https://s01.oss.sonatype.org/"
     if (isSnapshot.value)
       Some("snapshots" at nexus + "content/repositories/snapshots")
     else
       Some("releases"  at nexus + "service/local/staging/deploy/maven2")
   },
-  scmInfo := Some(
+  ThisBuild / scmInfo := Some(
     ScmInfo(
       url("https://github.com/Prince951-17/bot4scala"),
       "scm:git:https://github.com/Prince951-17/bot4scala.git"
     )
   ),
-  licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
-  developers := List(
+  ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
+  ThisBuild / developers := List(
     Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
   ),
-  scalaVersion := scala2_12,
-  description := "Telegram Bot API for scala",
-  credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
-  crossScalaVersions := Seq(scala2_13, scalaVersion.value),
-  pomExtra := <developers>
+  ThisBuild / scalaVersion := scala2_12,
+  ThisBuild / description := "Telegram Bot API for scala",
+  ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
+  ThisBuild / crossScalaVersions := Seq(scala2_13, scalaVersion.value),
+  ThisBuild / pomExtra := <developers>
     <developer>
       <id>Prince951-17</id>
       <name>Maftunbek Raxmatov</name>
