@@ -1,73 +1,60 @@
-import sbt.Def.settings
-import sbt.Keys.publishArtifact
+import sbt.Keys.{crossScalaVersions, publishArtifact}
 
-val scala2_13 = "2.13.5"
-val scala2_12 = "2.12.12"
-lazy val bot4scala = (project in file(".")).aggregate(core, examples)
-name := "bot4scala"
-settings(
-  publish := {},
-  publishLocal := {},
-)
-lazy val projectSettings = Seq(
-  ThisBuild / version := "1.0",
-  ThisBuild / organization := "uz.scala",
-  ThisBuild / publishMavenStyle := true,
-  ThisBuild / publishArtifact in Test := false,
-  ThisBuild /  pomIncludeRepository := { _ => false },
-  ThisBuild / releaseIgnoreUntrackedFiles := true,
-  ThisBuild /  publishTo in ThisBuild := {
-    val nexus = "https://s01.oss.sonatype.org/"
-    if (isSnapshot.value)
-      Some("snapshots" at nexus + "content/repositories/snapshots")
-    else
-      Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-  },
-  ThisBuild / scmInfo := Some(
-    ScmInfo(
-      url("https://github.com/Prince951-17/bot4scala"),
-      "scm:git:https://github.com/Prince951-17/bot4scala.git"
+lazy val scala2_13              = "2.13.5"
+lazy val scala2_12              = "2.12.12"
+lazy val supportedScalaVersions = List(scala2_12, scala2_13)
+
+lazy val bot4scala = (project in file("."))
+  .settings(
+    publish / skip := true,
+    crossScalaVersions := Nil
+    ).aggregate(core, examples)
+
+ThisBuild / version := "1.0"
+ThisBuild / organization := "uz.scala"
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishArtifact in Test := false
+ThisBuild / pomIncludeRepository := { _ => false }
+ThisBuild / releaseIgnoreUntrackedFiles := true
+ThisBuild / publishTo in ThisBuild := {
+  val nexus = "https://s01.oss.sonatype.org/"
+  if (isSnapshot.value)
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
+ThisBuild / scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/Prince951-17/bot4scala"),
+    "scm:git:https://github.com/Prince951-17/bot4scala.git"
     )
-  ),
-  ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala")),
-  ThisBuild / developers := List(
-    Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
-  ),
-  ThisBuild / scalaVersion := scala2_12,
-  ThisBuild / description := "Telegram Bot API for scala",
-  ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials"),
-  ThisBuild / crossScalaVersions := Seq(scala2_13, scalaVersion.value),
-  ThisBuild / pomExtra := <developers>
-    <developer>
-      <id>Prince951-17</id>
-      <name>Maftunbek Raxmatov</name>
-      <url>https://github.com/Prince951-17</url>
-    </developer>
-  </developers>
-)
+  )
+ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
+ThisBuild / developers := List(
+  Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
+  )
+ThisBuild / scalaVersion := scala2_12
 
 lazy val core = project
   .in(file("core"))
   .settings(
     name := "bot4scala",
-    projectSettings,
     compilerOptions,
-  ).settings(
+    crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2",
-      "org.json4s" %% "json4s-native" % "3.2.11"
+      "org.json4s" %% "json4s-native" % "4.0.0"
+      )
     )
-  )
 
 lazy val examples = project
   .in(file("examples"))
   .settings(
     name := "bot4scala-examples",
-    skip.in(publish) := true,
-    projectSettings,
-    crossScalaVersions := Seq(scalaVersion.value)
-  ).dependsOn(core)
+    publish / skip := true,
+    crossScalaVersions := supportedScalaVersions
+    ).dependsOn(core)
 
 lazy val compilerOptions =
   scalacOptions ++= Seq(
@@ -85,4 +72,14 @@ lazy val compilerOptions =
     "-Ywarn-unused:patvars", // Warn if a variable bound in a pattern is unused.
     "-Ywarn-unused:privates", // Warn if a private member is unused.
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
-  ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
+    ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
+
+ThisBuild / description := "Telegram Bot API for scala"
+ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
+ThisBuild / pomExtra := <developers>
+  <developer>
+    <id>Prince951-17</id>
+    <name>Maftunbek Raxmatov</name>
+    <url>https://github.com/Prince951-17</url>
+  </developer>
+</developers>
