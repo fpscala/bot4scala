@@ -8,8 +8,6 @@ lazy val bot4scala = (project in file("."))
   .settings(
     releaseIgnoreUntrackedFiles := true,
     publish / skip := true,
-    bintrayPackageLabels := Seq("scala", "sbt"),
-    bintrayRepository := "maven",
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
