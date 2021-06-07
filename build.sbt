@@ -6,42 +6,41 @@ lazy val supportedScalaVersions = List(scala2_12, scala2_13)
 
 lazy val bot4scala = (project in file("."))
   .settings(
-    releaseIgnoreUntrackedFiles := true,
     publish / skip := true,
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
-version := "1.0"
-organization := "uz.scala"
-publishArtifact in Test := false
-publishArtifact := true
-publishTo in ThisBuild := {
+ThisBuild / version := "1.0"
+ThisBuild / organization := "uz.scala"
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishArtifact in Test := false
+ThisBuild / pomIncludeRepository := { _ => false }
+ThisBuild / releaseIgnoreUntrackedFiles := true
+ThisBuild / publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots/")
+    Some("snapshots" at nexus + "content/repositories/snapshots")
   else
-    Some("releases" at nexus + "content/repositories/releases/")
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
-scmInfo := Some(
+ThisBuild / scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
     "scm:git:https://github.com/Prince951-17/bot4scala.git"
     )
   )
-licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
-homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
-description := "Telegram Bot API for scala"
-developers := List(
+ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
+ThisBuild / developers := List(
   Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
   )
+ThisBuild / scalaVersion := scala2_12
 
 lazy val core = project
   .in(file("core"))
   .settings(
     name := "bot4scala",
     compilerOptions,
-    publishMavenStyle := true,
-    pomIncludeRepository := { _ => false },
     crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2",
@@ -74,8 +73,10 @@ lazy val compilerOptions =
     "-Ywarn-unused:privates", // Warn if a private member is unused.
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
-credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
-pomExtra := <developers>
+
+ThisBuild / description := "Telegram Bot API for scala"
+ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
+ThisBuild / pomExtra := <developers>
   <developer>
     <id>Prince951-17</id>
     <name>Maftunbek Raxmatov</name>
