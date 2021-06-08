@@ -14,12 +14,12 @@ lazy val bot4scala = (project in file("."))
 version := "1.0"
 organization := "uz.scala"
 publishArtifact in Test := false
-publishTo in ThisBuild := {
+publishTo := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots/")
+    Some("Snapshots" at nexus + "content/repositories/snapshots/")
   else
-    Some("releases" at nexus + "content/repositories/releases/")
+    Some("Releases" at nexus + "content/repositories/releases/")
 }
 scmInfo := Some(
   ScmInfo(
