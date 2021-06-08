@@ -1,26 +1,18 @@
 package uz.scala.telegram.bot.models
 
-import java.io.{FileInputStream, InputStream, File}
+import java.io.{File, FileInputStream, InputStream}
 
 /**
  * Created by mukel on 8/16/15.
  */
-trait InputFile {
-  val name: String
-  val mimeType: String = "application/octet-stream"
-  val bytes: Array[Byte]
-}
+trait InputFile
 
 object InputFile {
+  final case class FileId(fileId: String)                            extends InputFile
+  final case class Path(path: java.nio.file.Path)                    extends InputFile
+  final case class Contents(filename: String, contents: Array[Byte]) extends InputFile
 
-  def apply(filePath: String): InputFile = apply(new File(filePath))
-
-  def apply(file: File): InputFile = {
-    apply(file.getName, new FileInputStream(file))
-  }
-
-  def apply(fileName: String, inputStream: InputStream): InputFile = new InputFile {
-    val name: String = fileName
-    val bytes: Array[Byte] = Iterator.continually(inputStream.read()) takeWhile (-1 !=) map (_.toByte) toArray
-  }
+  def apply(fileId: String): InputFile                          = FileId(fileId)
+  def apply(path: java.nio.file.Path): InputFile                = Path(path)
+  def apply(filename: String, contents: Array[Byte]): InputFile = Contents(filename, contents)
 }

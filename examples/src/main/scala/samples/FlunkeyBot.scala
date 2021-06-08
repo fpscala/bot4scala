@@ -6,7 +6,7 @@ import uz.scala.telegram.bot.models.{ForceReply, InputFile, ReplyKeyboardHide, R
 
 import java.net.URLEncoder
 
-object FlunkeyBot extends TelegramBot(Utils.tokenFromFile("./tokens/flunkeybot.token")) with Polling with Commands {
+object FlunkeyBot extends TelegramBot("801181530:AAG7x1PH8IIKBmX0umPCES3RZpsxWtyyfGc") with Polling with Commands {
 
   onCommand("hello") { (sender, _) =>
     replyTo(sender) {

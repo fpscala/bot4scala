@@ -19,6 +19,13 @@ trait ReplyMarkup
  *
  *                        Example: A user requests to change the bot‘s language, bot replies to the request with a keyboard to select the new language. Other users in the group don’t see the keyboard.
  */
+
+case class KeyboardButton(
+  text: String,
+  requestContact: Option[Boolean] = None,
+  requestLocation: Option[Boolean] = None
+) /* not a ReplyMarkup */
+
 case class ReplyKeyboardMarkup(
                                 keyboard       : Array[Array[String]],
                                 resizeKeyboard : Option[Boolean] = None,

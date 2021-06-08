@@ -21,6 +21,7 @@ trait Polling extends Runnable {
     while (running) {
       for (updates <- getUpdates(offset = updatesOffset)) {
         for (u <- updates) {
+          println("updates " + u)
           handleUpdate(u)
           updatesOffset = updatesOffset max (u.updateId + 1)
         }

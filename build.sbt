@@ -35,6 +35,13 @@ ThisBuild / developers := List(
   Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
   )
 ThisBuild / scalaVersion := scala2_12
+val circeVersion = "0.14.1"
+
+val jsonLibs = Seq(
+  "io.circe" %% "circe-core",
+  "io.circe" %% "circe-generic",
+  "io.circe" %% "circe-parser"
+).map(_ % circeVersion)
 
 lazy val core = project
   .in(file("core"))
@@ -43,9 +50,11 @@ lazy val core = project
     compilerOptions,
     crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
+      "com.typesafe.scala-logging" %% "scala-logging" % "3.9.3",
       "org.scalaj" %% "scalaj-http" % "2.4.2",
-      "org.json4s" %% "json4s-native" % "4.0.0"
-      )
+      "org.typelevel" %% "cats-core" % "2.6.1",
+      "org.typelevel" %% "cats-free" % "2.6.1"
+      ) ++ jsonLibs
     )
 
 lazy val examples = project
