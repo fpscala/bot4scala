@@ -72,7 +72,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId      Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup           Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendMessage(chatId: Int,
+  def sendMessage(chatId: Long,
                   text                 : String,
                   disableWebPagePreview: Option[Boolean] = None,
                   replyToMessageId     : Option[Int] = None,
@@ -94,7 +94,7 @@ class TelegramBotApi(token: String) {
    * @param fromChatId Unique identifier for the chat where the original message was sent — User or GroupChat id
    * @param messageId  Unique message identifier
    */
-  def forwardMessage(chatId: Int,
+  def forwardMessage(chatId: Long,
                      fromChatId: Int,
                      messageId : Int): Future[Message] = {
     getAs[Message]("forwardMessage",
@@ -116,7 +116,7 @@ class TelegramBotApi(token: String) {
    * @param chatId Unique identifier for the message recipient — User or GroupChat id
    * @param action Type of action to broadcast. Choose one, depending on what the user is about to receive: typing for text messages, upload_photo for photos, record_video or upload_video for videos, record_audio or upload_audio for audio files, upload_document for general files, find_location for location data.
    */
-  def sendChatAction(chatId: Int,
+  def sendChatAction(chatId: Long,
                      action: ChatAction): Unit = {
     apiCall("sendChatAction",
             "chat_id" -> chatId,
@@ -135,7 +135,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup      Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendLocation(chatId: Int,
+  def sendLocation(chatId: Long,
                    latitude        : Float,
                    longitude       : Float,
                    replyToMessageId: Option[Int] = None,
@@ -191,7 +191,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendPhotoId(chatId          : Int,
+  def sendPhotoId(chatId          : Long,
                   photoId         : String,
                   caption         : Option[String] = None,
                   replyToMessageId: Option[Int] = None,
@@ -218,7 +218,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup      Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendAudio(chatId          : Int,
+  def sendAudio(chatId          : Long,
                 audioFile       : InputFile,
                 duration        : Option[Int] = None,
                 performer       : Option[String] = None,
@@ -235,7 +235,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendAudioId(chatId          : Int,
+  def sendAudioId(chatId          : Long,
                   audioId         : String,
                   duration        : Option[Int] = None,
                   performer       : Option[String] = None,
@@ -263,7 +263,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional  If the message is a reply, ID of the original message
    * @param replyMarkup      Optional  Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendVoice(chatId          : Int,
+  def sendVoice(chatId          : Long,
                 audioFile       : InputFile,
                 duration        : Option[Int] = None,
                 performer       : Option[String] = None,
@@ -280,7 +280,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendVoiceId(chatId: Int,
+  def sendVoiceId(chatId: Long,
                   audioId         : String,
                   duration        : Option[Int] = None,
                   performer       : Option[String] = None,
@@ -306,7 +306,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup      Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendDocument(chatId          : Int,
+  def sendDocument(chatId          : Long,
                    documentFile    : InputFile,
                    replyToMessageId: Option[Int] = None,
                    replyMarkup     : Option[ReplyMarkup] = None): Future[Message] = {
@@ -317,7 +317,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendDocumentId(chatId          : Int,
+  def sendDocumentId(chatId          : Long,
                      documentId      : String,
                      replyToMessageId: Option[Int] = None,
                      replyMarkup     : Option[ReplyMarkup] = None): Future[Message] = {
@@ -338,7 +338,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup      Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendSticker(chatId          : Int,
+  def sendSticker(chatId          : Long,
                   stickerFile     : InputFile,
                   replyToMessageId: Option[Int] = None,
                   replyMarkup     : Option[ReplyMarkup] = None): Future[Message] = {
@@ -349,7 +349,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendStickerId(chatId          : Int,
+  def sendStickerId(chatId          : Long,
                     stickerId       : String,
                     replyToMessageId: Option[Int] = None,
                     replyMarkup     : Option[ReplyMarkup] = None): Future[Message] = {
@@ -372,7 +372,7 @@ class TelegramBotApi(token: String) {
    * @param replyToMessageId Optional 	If the message is a reply, ID of the original message
    * @param replyMarkup      Optional 	Additional interface options. A JSON-serialized object for a custom reply keyboard, instructions to hide keyboard or to force a reply from the user.
    */
-  def sendVideo(chatId          : Int,
+  def sendVideo(chatId          : Long,
                 videoFile       : InputFile,
                 duration        : Option[Int] = None,
                 caption         : Option[String] = None,
@@ -387,7 +387,7 @@ class TelegramBotApi(token: String) {
                    "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
 
-  def sendVideoId(chatId          : Int,
+  def sendVideoId(chatId          : Long,
                   videoId         : String,
                   duration        : Option[Int] = None,
                   caption         : Option[String] = None,

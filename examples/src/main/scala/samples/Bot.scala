@@ -3,10 +3,10 @@ package samples
 import uz.scala.telegram.bot.{Commands, Polling, TelegramBot}
 import uz.scala.telegram.bot.api.InputFile
 
-object AsyncBot extends TelegramBot("801181530:AAHewjnuAhU40jYF_k0G5rtbuWg9WfbR4_A") with Polling with Commands {
+object AsyncBot extends TelegramBot("token") with Polling with Commands {
   // Send a photo aysnchronously
-  onCommand("foto") { (_, _) =>
-    sendPhoto(-1001397860592L, InputFile("./image.jpeg"), caption = Some("💪!!!🦾"))
+  onCommand("foto") { (sender, _) =>
+    sendPhoto(sender, InputFile("./clock--v2.png"), caption = Some("💪!!!🦾"))
   }
 }
 

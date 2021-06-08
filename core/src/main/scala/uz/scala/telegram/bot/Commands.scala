@@ -19,7 +19,7 @@ trait Commands {
   // Allows targeting specific bots eg. /hello@FlunkeyBot
   val cmdAt = "@"
 
-  private val commands = mutable.HashMap[String, (Int, Seq[String]) => Unit]()
+  private val commands = mutable.HashMap[String, (Long, Seq[String]) => Unit]()
 
   /**
    * handleUpdate
@@ -75,7 +75,7 @@ trait Commands {
    *
    * Handy wrapper to send text replies
    */
-  def replyTo(chatId: Int,
+  def replyTo(chatId: Long,
               disableWebPagePreview: Option[Boolean] = None,
               replyToMessageId     : Option[Int] = None)
              (text: String): Future[Message] = {
@@ -88,7 +88,7 @@ trait Commands {
    * Makes the bot able react to 'command' with the specified handler.
    * 'action' will receive the sender (chatId) and the arguments as parameters.
    */
-  def onCommand(command: String)(action: (Int, Seq[String]) => Unit): Unit = {
+  def onCommand(command: String)(action: (Long, Seq[String]) => Unit): Unit = {
     commands += (command -> action)
   }
 }
