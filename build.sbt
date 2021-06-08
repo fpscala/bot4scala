@@ -10,28 +10,28 @@ lazy val bot4scala = (project in file("."))
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
-ThisBuild / version := "1.0"
-ThisBuild / organization := "uz.scala"
-ThisBuild / publishArtifact in Test := false
-ThisBuild / publishTo in ThisBuild := {
+version := "1.0"
+organization := "uz.scala"
+publishArtifact in Test := false
+publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
   else
     Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
-ThisBuild / scmInfo := Some(
+scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
     "scm:git:https://github.com/Prince951-17/bot4scala.git"
     )
   )
-ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
-ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
-ThisBuild / developers := List(
+licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
+homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
+description := "Telegram Bot API for scala"
+developers := List(
   Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
   )
-ThisBuild / scalaVersion := scala2_12
 
 lazy val core = project
   .in(file("core"))
@@ -73,10 +73,8 @@ lazy val compilerOptions =
     "-Ywarn-unused:privates", // Warn if a private member is unused.
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
-
-ThisBuild / description := "Telegram Bot API for scala"
-ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
-ThisBuild / pomExtra := <developers>
+credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
+pomExtra := <developers>
   <developer>
     <id>Prince951-17</id>
     <name>Maftunbek Raxmatov</name>
