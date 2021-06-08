@@ -1,6 +1,6 @@
 package uz.scala.telegram.bot.clients
 
-import api.RequestHandler
+import uz.scala.telegram.bot.api.RequestHandler
 import io.circe.parser.parse
 import io.circe.{Decoder, Encoder}
 import scalaj.http.{Http, MultiPart}
