@@ -76,10 +76,3 @@ lazy val compilerOptions =
 
 ThisBuild / description := "Telegram Bot API for scala"
 ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
-ThisBuild / pomExtra := <developers>
-  <developer>
-    <id>Prince951-17</id>
-    <name>Maftunbek Raxmatov</name>
-    <url>https://github.com/Prince951-17</url>
-  </developer>
-</developers>
