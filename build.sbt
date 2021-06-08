@@ -15,7 +15,7 @@ version := "1.0"
 organization := "uz.scala"
 publishArtifact in Test := false
 publishTo := {
-  val nexus = "https://oss.sonatype.org/"
+  val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots/")
   else
