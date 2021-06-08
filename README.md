@@ -2,6 +2,11 @@
 [![Build Status](https://travis-ci.com/Prince951-17/bot4scala.svg?branch=master)](https://travis-ci.com/Prince951-17/bot4scala)
 
 Telegram Bot API for Scala
+## As SBT dependency
+Add to your `build.sbt` file:
+```scala
+libraryDependencies += "uz.scala" %% "bot4scala" % "1.0.2"
+```
 
 ## Supported API:
   - getMe
@@ -31,7 +36,7 @@ Contributions are highly appreciated, documentation improvements/corrections, [b
 
   val helloBot = new TelegramBot(TOKEN) with Polling with Commands
   
-  helloBot.on("hello") { (sender, args) =>
+  helloBot.onCommand("hello") { (sender, args) =>
     replyTo(sender) {
       "Hello World!"
     }
@@ -46,19 +51,13 @@ Or Async bot
 ```scala
 
 object AsyncBot extends TelegramBot(TOKEN) with Polling with Commands {
-
-  on("expensive_computation") { (sender, args) =>
-    Future {
-      replyTo(sender) {
-        // Expensive computation here
-        Thread.sleep(10000)
-        "42"
-      }
-    }
+  
+  onCommand("foto") { (sender, _) =>
+    sendPhoto(sender, InputFile("./clock--v2.png"), caption = Some("💪!!!🦾"))
   }
 
   // Send a photo aysnchronously
-  on("bender") { (sender, _) =>
+  onCommand("bender") { (sender, _) =>
     Future {
       sendPhoto(sender, InputFile("./bender_photo.jpg"),
                 caption = "Bender the great!!!")
