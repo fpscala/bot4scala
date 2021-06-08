@@ -15,11 +15,11 @@ version := "1.0"
 organization := "uz.scala"
 publishArtifact in Test := false
 publishTo := {
-  val nexus = "https://s01.oss.sonatype.org/"
+  val nexus = "https://oss.sonatype.org/"
   if (isSnapshot.value)
-    Some("Snapshots" at nexus + "content/repositories/snapshots/")
+    Some("snapshots" at nexus + "content/repositories/snapshots/")
   else
-    Some("Releases" at nexus + "content/repositories/releases/")
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 scmInfo := Some(
   ScmInfo(
