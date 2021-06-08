@@ -32,7 +32,7 @@ trait Webhooks extends Runnable with HttpHandler {
     setWebhook(webHookUrl)
   }
 
-  private def respond(exchange: HttpExchange, code: Int = 200, body: String = "") {
+  private def respond(exchange: HttpExchange, code: Int = 200, body: String = ""): Unit = {
     val bytes = body.getBytes
     exchange.sendResponseHeaders(code, bytes.size)
     val out = exchange.getResponseBody
