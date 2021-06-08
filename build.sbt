@@ -7,6 +7,7 @@ lazy val supportedScalaVersions = List(scala2_12, scala2_13)
 lazy val bot4scala = (project in file("."))
   .settings(
     publish / skip := true,
+    releaseIgnoreUntrackedFiles := true,
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
@@ -15,7 +16,6 @@ ThisBuild / organization := "uz.scala"
 ThisBuild / publishMavenStyle := true
 ThisBuild / publishArtifact in Test := false
 ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / releaseIgnoreUntrackedFiles := true
 ThisBuild / publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
