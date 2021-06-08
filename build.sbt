@@ -12,10 +12,7 @@ lazy val bot4scala = (project in file("."))
 
 ThisBuild / version := "1.0"
 ThisBuild / organization := "uz.scala"
-ThisBuild / publishMavenStyle := true
 ThisBuild / publishArtifact in Test := false
-ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / releaseIgnoreUntrackedFiles := true
 ThisBuild / publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
@@ -41,6 +38,9 @@ lazy val core = project
   .settings(
     name := "bot4scala",
     compilerOptions,
+    publishMavenStyle := true,
+    pomIncludeRepository := { _ => false },
+    releaseIgnoreUntrackedFiles := true,
     crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2",
