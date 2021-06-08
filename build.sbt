@@ -6,6 +6,7 @@ lazy val supportedScalaVersions = List(scala2_12, scala2_13)
 
 lazy val bot4scala = (project in file("."))
   .settings(
+    releaseIgnoreUntrackedFiles := true,
     publish / skip := true,
     crossScalaVersions := Nil
     ).aggregate(core, examples)
@@ -40,7 +41,6 @@ lazy val core = project
     compilerOptions,
     publishMavenStyle := true,
     pomIncludeRepository := { _ => false },
-    releaseIgnoreUntrackedFiles := true,
     crossScalaVersions := supportedScalaVersions,
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2",
