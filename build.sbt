@@ -10,13 +10,14 @@ lazy val bot4scala = (project in file("."))
     scalaVersion := scala2_13,
     releaseIgnoreUntrackedFiles := true,
     crossScalaVersions := Nil
-    ).aggregate(core, examples)
+  ).aggregate(core, examples)
 
-organization := "uz.scala"
-publishMavenStyle := true
-pomIncludeRepository := { _ => false }
-publishArtifact in Test := false
-publishTo in ThisBuild := {
+ThisBuild / organization := "uz.scala"
+ThisBuild / publishMavenStyle := true
+ThisBuild / publishArtifact in Test := false
+ThisBuild / pomIncludeRepository := { _ => false }
+ThisBuild / releaseIgnoreUntrackedFiles := true
+ThisBuild / publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
@@ -27,13 +28,14 @@ ThisBuild / scmInfo := Some(
   ScmInfo(
     url("https://github.com/Prince951-17/bot4scala"),
     "scm:git:https://github.com/Prince951-17/bot4scala.git"
-    )
   )
+)
 ThisBuild / licenses ++= Seq("Apache 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0"))
 ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
 ThisBuild / developers := List(
   Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
-  )
+)
+ThisBuild / scalaVersion := scala2_12
 
 lazy val core = project
   .in(file("core"))
@@ -44,8 +46,8 @@ lazy val core = project
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2",
       "org.json4s" %% "json4s-native" % "4.0.0"
-      )
     )
+  )
 
 lazy val examples = project
   .in(file("examples"))
@@ -53,7 +55,7 @@ lazy val examples = project
     name := "bot4scala-examples",
     publish / skip := true,
     crossScalaVersions := supportedScalaVersions
-    ).dependsOn(core)
+  ).dependsOn(core)
 
 lazy val compilerOptions =
   scalacOptions ++= Seq(
@@ -71,7 +73,7 @@ lazy val compilerOptions =
     "-Ywarn-unused:patvars", // Warn if a variable bound in a pattern is unused.
     "-Ywarn-unused:privates", // Warn if a private member is unused.
     "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
-    ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
+  ) ++ (if (scalaBinaryVersion.value.startsWith("2.12")) List("-Ypartial-unification") else Nil)
 
 ThisBuild / description := "Telegram Bot API for scala"
 ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credentials")
