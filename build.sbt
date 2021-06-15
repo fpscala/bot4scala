@@ -11,7 +11,6 @@ lazy val bot4scala = (project in file("."))
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
-version := "1.0"
 organization := "uz.scala"
 publishMavenStyle := true
 pomIncludeRepository := { _ => false }
