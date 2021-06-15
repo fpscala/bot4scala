@@ -19,8 +19,12 @@ object InputFile {
     apply(file.getName, new FileInputStream(file))
   }
 
-  def apply(fileName: String, inputStream: InputStream): InputFile = new InputFile {
-    val name = fileName
-    val bytes = Iterator.continually(inputStream.read()) takeWhile (-1 !=) map (_.toByte) toArray
+  def apply(filename: String, file: File): InputFile = {
+    apply(filename, new FileInputStream(file))
+  }
+
+  def apply(filename: String, inputStream: InputStream): InputFile = new InputFile {
+    val name : String      = filename
+    val bytes: Array[Byte] = Iterator.continually(inputStream.read()) takeWhile (-1 !=) map (_.toByte) toArray
   }
 }
