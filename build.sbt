@@ -11,12 +11,12 @@ lazy val bot4scala = (project in file("."))
     crossScalaVersions := Nil
     ).aggregate(core, examples)
 
-ThisBuild / version := "1.0"
-ThisBuild / organization := "uz.scala"
-ThisBuild / publishMavenStyle := true
-ThisBuild / publishArtifact in Test := false
-ThisBuild / pomIncludeRepository := { _ => false }
-ThisBuild / publishTo in ThisBuild := {
+version := "1.0"
+organization := "uz.scala"
+publishMavenStyle := true
+pomIncludeRepository := { _ => false }
+publishArtifact in Test := false
+publishTo in ThisBuild := {
   val nexus = "https://s01.oss.sonatype.org/"
   if (isSnapshot.value)
     Some("snapshots" at nexus + "content/repositories/snapshots")
