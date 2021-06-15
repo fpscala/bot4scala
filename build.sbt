@@ -7,6 +7,7 @@ lazy val supportedScalaVersions = List(scala2_12, scala2_13)
 lazy val bot4scala = (project in file("."))
   .settings(
     publish / skip := true,
+    scalaVersion := scala2_13,
     releaseIgnoreUntrackedFiles := true,
     crossScalaVersions := Nil
     ).aggregate(core, examples)
