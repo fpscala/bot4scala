@@ -33,7 +33,6 @@ ThisBuild / homepage := Some(url("https://github.com/Prince951-17/bot4scala"))
 ThisBuild / developers := List(
   Developer("Prince", "Maftunbek Raxmatov", "prince777_98@mail.ru", url("https://github.com/Prince951-17"))
   )
-ThisBuild / scalaVersion := scala2_12
 
 lazy val core = project
   .in(file("core"))
