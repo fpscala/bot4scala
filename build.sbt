@@ -40,7 +40,8 @@ val circeVersion = "0.14.1"
 val jsonLibs = Seq(
   "io.circe" %% "circe-core",
   "io.circe" %% "circe-generic",
-  "io.circe" %% "circe-parser"
+  "io.circe" %% "circe-parser",
+  "io.circe" %% "circe-generic-extras"
 ).map(_ % circeVersion)
 
 lazy val core = project

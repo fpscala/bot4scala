@@ -24,8 +24,6 @@ trait Webhooks extends Runnable with HttpHandler {
   private val address = new InetSocketAddress(hostname, port)
   private val server  = HttpServer.create(address, backlog)
 
-  import OptionPimps._
-
   override def run(): Unit = {
     server.createContext("/", this)
     server.start()
