@@ -1,4 +1,4 @@
-package api
+package uz.scala.telegram.bot.api
 
 import uz.scala.telegram.bot.models.ResponseParameters
 

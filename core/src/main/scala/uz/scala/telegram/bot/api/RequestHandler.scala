@@ -1,4 +1,4 @@
-package api
+package uz.scala.telegram.bot.api
 
 import cats.MonadError
 import cats.syntax.flatMap._
