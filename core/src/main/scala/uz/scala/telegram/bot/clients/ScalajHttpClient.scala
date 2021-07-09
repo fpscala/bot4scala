@@ -1,9 +1,9 @@
 package uz.scala.telegram.bot.clients
 
-import uz.scala.telegram.bot.api.RequestHandler
 import io.circe.parser.parse
 import io.circe.{Decoder, Encoder}
 import scalaj.http.{Http, MultiPart}
+import uz.scala.telegram.bot.api.RequestHandler
 import uz.scala.telegram.bot.marshalling
 import uz.scala.telegram.bot.methods.{JsonRequest, MultipartRequest, Request, Response}
 import uz.scala.telegram.bot.models.InputFile
@@ -41,7 +41,7 @@ class ScalajHttpClient(token: String, telegramHost: String = "api.telegram.org")
     val url = apiBaseUrl + request.methodName
 
     val scalajRequest = request match {
-      case r: JsonRequest[_] =>
+      case _: JsonRequest[_] =>
         Http(url)
           .postData(marshalling.toJson(request))
           .header("Content-Type", "application/json")
@@ -49,7 +49,7 @@ class ScalajHttpClient(token: String, telegramHost: String = "api.telegram.org")
       case r: MultipartRequest[_] =>
         // InputFile.FileIds are encoded as query params.
         val (fileIds, files) = r.getFiles.partition {
-          case (key, _: InputFile.FileId) => true
+          case (_, _: InputFile.FileId) => true
           case _                          => false
         }
 
@@ -57,7 +57,7 @@ class ScalajHttpClient(token: String, telegramHost: String = "api.telegram.org")
           val key = marshalling.snakenize(camelKey)
           inputFile match {
             case InputFile.FileId(id) =>
-              throw new RuntimeException("InputFile.FileId cannot must be encoded as a query param")
+              throw new RuntimeException(s"InputFile.FileId($id) cannot must be encoded as a query param")
 
             case InputFile.Contents(filename, contents) =>
               MultiPart(key, filename, "application/octet-stream", contents)

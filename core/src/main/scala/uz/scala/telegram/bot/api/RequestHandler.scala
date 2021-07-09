@@ -6,12 +6,11 @@ import cats.syntax.functor._
 import cats.syntax.monadError._
 import com.typesafe.scalalogging.LazyLogging
 import io.circe.generic.extras.auto.exportDecoder
-import uz.scala.telegram.bot.methods._
 import io.circe.{Decoder, Encoder}
 import uz.scala.telegram.bot.marshalling._
+import uz.scala.telegram.bot.methods.{GetMe, _}
 
 import java.util.UUID
-
 
 abstract class RequestHandler[F[_]](implicit monadError: MonadError[F, Throwable]) extends LazyLogging {
 
@@ -45,6 +44,7 @@ abstract class RequestHandler[F[_]](implicit monadError: MonadError[F, Throwable
   private def sendRequestInternal[R](request: Request[R]): F[R] =
     request match {
       // Pure JSON requests
+      case s: GetMe.type => sendRequest[R, GetMe.type ](s)
       case s: GetUpdates => sendRequest[R, GetUpdates](s)
     }
 

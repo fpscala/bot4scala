@@ -12,8 +12,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
  */
 abstract class TelegramBot(val token: String) extends ScalajHttpClient(token) {
 
-  lazy val botName: String = Await.result(getMe.map(_.username.get), 5.seconds)
-
   /**
    * handleUpdate
    *

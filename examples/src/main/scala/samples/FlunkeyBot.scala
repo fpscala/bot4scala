@@ -1,6 +1,6 @@
 package samples
 
-import uz.scala.telegram.bot.{Commands, TelegramBot}
+import uz.scala.telegram.bot.TelegramBot
 import uz.scala.telegram.bot.models.{ForceReply, InputFile, ReplyKeyboardHide, ReplyKeyboardMarkup}
 
 import java.net.URLEncoder

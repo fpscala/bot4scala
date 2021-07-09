@@ -5,7 +5,7 @@ import io.circe.Decoder
 import io.circe.generic.semiauto._
 import uz.scala.telegram.bot.methods.ParseMode.ParseMode
 import uz.scala.telegram.bot.methods.PollType.PollType
-import uz.scala.telegram.bot.methods.{GetUpdates, ParseMode, PollType, Response}
+import uz.scala.telegram.bot.methods.{GetMe, GetUpdates, ParseMode, PollType, Response}
 import uz.scala.telegram.bot.models.ChatAction.ChatAction
 import uz.scala.telegram.bot.models.ChatType.ChatType
 import uz.scala.telegram.bot.models.CountryCode.CountryCode
@@ -33,7 +33,7 @@ trait CirceDecoders extends LazyLogging {
       try {
         MessageEntityType.withName(pascalize(s))
       } catch {
-        case e: NoSuchElementException =>
+        case _: NoSuchElementException =>
           logger.warn(s"Unexpected MessageEntityType: '$s', fallback to Unknown.")
           MessageEntityType.Unknown
       }

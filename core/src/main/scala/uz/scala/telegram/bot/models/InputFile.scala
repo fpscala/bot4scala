@@ -1,7 +1,5 @@
 package uz.scala.telegram.bot.models
 
-import java.io.{File, FileInputStream, InputStream}
-
 /**
  * Created by mukel on 8/16/15.
  */
