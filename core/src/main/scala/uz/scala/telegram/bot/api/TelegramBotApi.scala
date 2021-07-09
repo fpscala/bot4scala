@@ -75,9 +75,9 @@ class TelegramBotApi(token: String) {
   def sendMessage(
     chatId: Long,
     text                 : String,
-    parseMode            : Option[String] = None,
     disableWebPagePreview: Option[Boolean] = None,
     replyToMessageId     : Option[Int] = None,
+    parseMode            : Option[String] = None,
     replyMarkup          : Option[ReplyMarkup] = None
   ): Future[Message] = {
     getAs[Message]("sendMessage",
