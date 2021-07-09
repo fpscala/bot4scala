@@ -75,6 +75,7 @@ class TelegramBotApi(token: String) {
   def sendMessage(
     chatId: Long,
     text                 : String,
+    parseMode            : Option[String] = None,
     disableWebPagePreview: Option[Boolean] = None,
     replyToMessageId     : Option[Int] = None,
     replyMarkup          : Option[ReplyMarkup] = None
@@ -82,6 +83,7 @@ class TelegramBotApi(token: String) {
     getAs[Message]("sendMessage",
       "chat_id" -> chatId,
       "text" -> text,
+      "parse_mode" -> parseMode,
       "disable_web_page_preview" -> disableWebPagePreview,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
@@ -209,6 +211,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     photoId: String,
     caption: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -216,6 +219,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "photo" -> photoId,
       "caption" -> caption,
+      "parse_mode" -> parseMode,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
@@ -240,6 +244,7 @@ class TelegramBotApi(token: String) {
     duration: Option[Int] = None,
     performer: Option[String] = None,
     title: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -248,6 +253,7 @@ class TelegramBotApi(token: String) {
       "audio" -> audioFile,
       "duration" -> duration,
       "performer" -> performer,
+      "parse_mode" -> parseMode,
       "title" -> title,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
@@ -257,6 +263,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     audioId: String,
     duration: Option[Int] = None,
+    parseMode: Option[String] = None,
     performer: Option[String] = None,
     title: Option[String] = None,
     replyToMessageId: Option[Int] = None,
@@ -267,6 +274,7 @@ class TelegramBotApi(token: String) {
       "audio" -> audioId,
       "duration" -> duration,
       "performer" -> performer,
+      "parse_mode" -> parseMode,
       "title" -> title,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
@@ -287,6 +295,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     audioFile: InputFile,
     duration: Option[Int] = None,
+    parseMode: Option[String] = None,
     performer: Option[String] = None,
     title: Option[String] = None,
     replyToMessageId: Option[Int] = None,
@@ -296,6 +305,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "audio" -> audioFile,
       "duration" -> duration,
+      "parse_mode" -> parseMode,
       "performer" -> performer,
       "title" -> title,
       "reply_to_message_id" -> replyToMessageId,
@@ -306,8 +316,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     audioId: String,
     duration: Option[Int] = None,
-    performer: Option[String] = None,
-    title: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -315,6 +324,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "audio" -> audioId,
       "duration" -> duration,
+      "parse_mode" -> parseMode,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
@@ -414,6 +424,7 @@ class TelegramBotApi(token: String) {
     videoFile: InputFile,
     duration: Option[Int] = None,
     caption: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -422,6 +433,7 @@ class TelegramBotApi(token: String) {
       "video" -> videoFile,
       "duration" -> duration,
       "caption" -> caption,
+      "parse_mode" -> parseMode,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
@@ -430,6 +442,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     videoId: String,
     duration: Option[Int] = None,
+    parseMode: Option[String] = None,
     caption: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
@@ -438,6 +451,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "video" -> videoId,
       "duration" -> duration,
+      "parse_mode" -> parseMode,
       "caption" -> caption,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
