@@ -192,6 +192,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     photoFile: InputFile,
     caption: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -199,6 +200,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "photo" -> photoFile,
       "caption" -> caption,
+      "parse_mode" -> parseMode,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
@@ -332,6 +334,7 @@ class TelegramBotApi(token: String) {
     chatId: Long,
     documentFile: InputFile,
     caption: Option[String] = None,
+    parseMode: Option[String] = None,
     replyToMessageId: Option[Int] = None,
     replyMarkup: Option[ReplyMarkup] = None
   ): Future[Message] = {
@@ -339,6 +342,7 @@ class TelegramBotApi(token: String) {
       "chat_id" -> chatId,
       "document" -> documentFile,
       "caption" -> caption,
+      "parse_mode" -> parseMode,
       "reply_to_message_id" -> replyToMessageId,
       "reply_markup" -> (replyMarkup map JsonUtils.jsonify))
   }
