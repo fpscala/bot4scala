@@ -16,7 +16,6 @@ trait Polling extends Runnable {
   private var running = true
 
   override def run(): Unit = {
-    // setWebhook(None)
     var updatesOffset = 0
     while (running) {
       for (updates <- getUpdates(offset = updatesOffset)) {
@@ -29,6 +28,6 @@ trait Polling extends Runnable {
     }
   }
 
-  //def start(): Unit = (new Thread(this)).start()
+  def start(): Unit = new Thread(this).start()
   def stop(): Unit = running = false
 }
