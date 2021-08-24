@@ -5,7 +5,7 @@ Telegram Bot API for Scala
 ## As SBT dependency
 Add to your `build.sbt` file:
 ```scala
-libraryDependencies += "uz.scala" %% "bot4scala" % "1.0.6"
+libraryDependencies += "uz.scala" %% "bot4scala" % "1.0.7"
 ```
 
 ## Supported API:
