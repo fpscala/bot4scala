@@ -11,5 +11,5 @@ object AsyncBot extends TelegramBot("token") with Polling with Commands {
 }
 
 object Bot extends App {
-  AsyncBot.run()
+  AsyncBot.start()
 }
